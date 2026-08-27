@@ -447,8 +447,9 @@ const LOBE_PROVIDER_ALIASES = {
   suno: "Suno",
   tavily: "Tavily",
   "tavily-search": "Tavily",
-  anysearch: "AnySearch",
-  "anysearch-search": "AnySearch",
+  // @lobehub/icons has no AnySearch glyph yet; use the generic search-provider icon.
+  anysearch: "SearchApi",
+  "anysearch-search": "SearchApi",
   tencent: "Tencent",
   "codebuddy-cn": "Tencent",
   together: "Together",
