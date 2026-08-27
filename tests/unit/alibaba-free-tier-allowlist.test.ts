@@ -42,3 +42,21 @@ test("allowlist JSON pack overrides embedded lists when valid", () => {
   else delete process.env.ALIBABA_FREE_TIER_ALLOWLIST_PATH;
   resetAlibabaFreeTierAllowlistCache();
 });
+
+test("date-only allowlist expiry remains valid through the listed UTC day", () => {
+  const pack = {
+    asOf: "2026-07-28",
+    validUntil: "2026-08-27",
+    capable: ["qwen3.6-plus"],
+    noFreeTier: [],
+  };
+
+  assert.equal(
+    isAlibabaFreeTierAllowlistPackValid(pack, Date.parse("2026-08-27T23:59:59.999Z")),
+    true
+  );
+  assert.equal(
+    isAlibabaFreeTierAllowlistPackValid(pack, Date.parse("2026-08-28T00:00:00.000Z")),
+    false
+  );
+});
